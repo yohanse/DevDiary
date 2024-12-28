@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "devdiary.helloWorld",
-        "title": "Hello World"
+        "command": "devdiary.nono",
+        "title": "fuck off"
       }
     ]
   },
