@@ -16,6 +16,10 @@
       {
         "command": "devdiary.nono",
         "title": "fuck off"
+      },
+      {
+        "command": "devdiary.currentTime",
+        "title": "current time"
       }
     ]
   },
