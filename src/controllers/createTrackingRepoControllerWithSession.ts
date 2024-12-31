@@ -9,6 +9,7 @@ export default async (repoName: string, accessToken: string, isPrivate: boolean)
             name: repoName,
             description: "A repository to store your activity logs.",
             private: isPrivate,
+            auto_init: true
         });
         return response.data as GitHubRepository;
     } catch (error) {
