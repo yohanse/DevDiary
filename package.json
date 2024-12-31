@@ -14,8 +14,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "devdiary.startTracking",
-        "title": "start tracking"
+        "command": "devdiary.StartActivityTracking",
+        "title": "Start Activity Tracking"
+      },
+      {
+        "command": "extension.createTrackingRepo",
+        "title": "Create Tracking Repo"
       }
     ],
 
