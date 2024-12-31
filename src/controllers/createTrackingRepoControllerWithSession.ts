@@ -1,4 +1,4 @@
-import saveRepositorySettings from "../helpers/saveRepositorySettings";
+import saveRepositorySettings from "../helpers/saveTrackingRepositorySettings";
 import { GitHubRepository } from "../interfaces/githubRepository";
 
 export default async (repoName: string, accessToken: string, isPrivate: boolean): Promise<GitHubRepository> => {
