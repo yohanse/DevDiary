@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
 
 export default async () => {
-    return vscode.authentication.getSession("github", ["repo"], { createIfNone: true });
+    return await vscode.authentication.getSession("github", ["repo"], { createIfNone: true });
 };
