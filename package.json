@@ -18,7 +18,7 @@
         "title": "Start Activity Tracking"
       },
       {
-        "command": "extension.createTrackingRepo",
+        "command": "devdiary.createTrackingRepo",
         "title": "Create Tracking Repo"
       }
     ],
