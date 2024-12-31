@@ -4,4 +4,8 @@ export interface GitHubRepository {
     name: string;
     full_name: string;
     description: string;
+    owner: {
+        login: string;
+    }
+    default_branch: string;
 }
