@@ -1,4 +1,3 @@
-import * as vscode from "vscode";
 import { GitHubRepository } from "../interfaces/githubRepository";
 
 export default async (repoName: string, accessToken: string, isPrivate: boolean): Promise<GitHubRepository> => {
