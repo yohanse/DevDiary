@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import createTrackingRepo from './createTrackingRepo';
 export default async () => {
     try {
         // Request GitHub authentication with the necessary scope
