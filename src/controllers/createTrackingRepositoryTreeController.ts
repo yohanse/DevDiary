@@ -21,6 +21,7 @@ export default async (accessToken: string, repoOwner: string, repoName: string, 
             ],
             base_tree: baseCommitSha,
           });
+          
           return treeResponse.data.sha;
     }
     catch (error) {
