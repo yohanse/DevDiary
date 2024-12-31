@@ -4,7 +4,7 @@ import createTrackingRepoControllerWithSession from "./createTrackingRepoControl
 import { GitHubRepository } from "../interfaces/githubRepository";
 
 export default async (repoName: string, isPrivate: boolean): Promise<GitHubRepository> => {
-    const session = await fetchAuthenticationSessionController();
+    const session: vscode.AuthenticationSession = await fetchAuthenticationSessionController();
     if (session) {
         return await createTrackingRepoControllerWithSession(repoName, session.accessToken, isPrivate);
     }
