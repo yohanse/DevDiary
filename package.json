@@ -41,6 +41,10 @@
       {
         "command": "devdiary.createTrackingRepo",
         "title": "Create Tracking Repo"
+      },
+      {
+        "command": "devdiary.testCommit",
+        "title": "Test Commit"
       }
     ],
 
