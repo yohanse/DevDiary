@@ -4,6 +4,7 @@ import retrieveTrackingRepositorySettings from "../helpers/retrieveTrackingRepos
 import getTrackingRepoReferenceController from "./getTrackingRepoReferenceController";
 import createTrackingRepositoryTreeController from "./createTrackingRepositoryTreeController";
 import createTrackingRepoCommitController from "./createTrackingRepoCommitController";
+import updateBranchToCommitController from "./updateBranchToCommitController";
 
 export default async () => {
     const session: vscode.AuthenticationSession = await fetchAuthenticationSessionController();
@@ -26,8 +27,7 @@ export default async () => {
             const commitSha = await createTrackingRepoCommitController(session.accessToken, repoOwner, repoName, commitMessage, refSha, treeSha);
 
             // Step 4. Update the reference to the new commit
-            
-
+            await updateBranchToCommitController(session.accessToken, repoOwner, repoName, defaultBranch, commitSha);
 
         }   
         catch (error) {
