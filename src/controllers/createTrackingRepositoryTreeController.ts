@@ -1,5 +1,3 @@
-import * as vscode from "vscode";
-
 export default async (accessToken: string, repoOwner: string, repoName: string, logContent: string, baseCommitSha: string) => {
     const currentTimestamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\..+/, ""); 
     const filePath = `log_${currentTimestamp}.txt`;
@@ -21,7 +19,7 @@ export default async (accessToken: string, repoOwner: string, repoName: string, 
             ],
             base_tree: baseCommitSha,
           });
-          
+
           return treeResponse.data.sha;
     }
     catch (error) {

@@ -1,8 +1,3 @@
-import * as vscode from "vscode";
-import fetchAuthenticationSessionController from "./fetchAuthenticationSessionController";
-import retrieveTrackingRepositorySettings from "../helpers/retrieveTrackingRepositorySettings";
-
-
 export default async (accessToken: string, repoOwner: string, repoName: string, defaultBranch: string): Promise<string> => {
     const { Octokit } = await import("@octokit/rest");
     const octokit = new Octokit({ auth: accessToken });

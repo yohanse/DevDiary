@@ -3,6 +3,7 @@ import fetchAuthenticationSessionController from "./fetchAuthenticationSessionCo
 import retrieveTrackingRepositorySettings from "../helpers/retrieveTrackingRepositorySettings";
 import getTrackingRepoReferenceController from "./getTrackingRepoReferenceController";
 import createTrackingRepositoryTreeController from "./createTrackingRepositoryTreeController";
+import createTrackingRepoCommitController from "./createTrackingRepoCommitController";
 
 export default async () => {
     const session: vscode.AuthenticationSession = await fetchAuthenticationSessionController();
@@ -14,12 +15,19 @@ export default async () => {
 
         try {
             // Step 1. Get a reference to the tracking repository
-            const refCommitSha: string = await getTrackingRepoReferenceController(session.accessToken, repoOwner, repoName, defaultBranch);
+            const refSha: string = await getTrackingRepoReferenceController(session.accessToken, repoOwner, repoName, defaultBranch);
 
             // Step 2. Create a Tree with the log file content
             const logContent = "Log content here";
-            const treeCommitSha = await createTrackingRepositoryTreeController(session.accessToken, repoOwner, repoName, logContent, refCommitSha);
+            const treeSha = await createTrackingRepositoryTreeController(session.accessToken, repoOwner, repoName, logContent, refSha);
+
+            // Step 3. Create a commit with the tree
+            const commitMessage = "Commit message here";
+            const commitSha = await createTrackingRepoCommitController(session.accessToken, repoOwner, repoName, commitMessage, refSha, treeSha);
+
+            // Step 4. Update the reference to the new commit
             
+
 
         }   
         catch (error) {
