@@ -1,34 +1,30 @@
 import * as vscode from "vscode";
 
 export default async (accessToken: string, repoOwner: string, repoName: string, logContent: string, baseCommitSha: string) => {
-    const currentTimestamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\..+/, ""); // Format timestamp for filename
-    const filePath = `log_${currentTimestamp}.txt`;  // Using "log_" and timestamp for unique naming
+    const currentTimestamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\..+/, ""); 
+    const filePath = `log_${currentTimestamp}.txt`;
     
-    // Create a new blob for the log file content
-    const blobResponse = await octokit.rest.git.createBlob({
-      owner: owner,
-      repo: repo,
-      content: logContent,
-      encoding: "utf-8",
-    });
-    const blobSha = blobResponse.data.sha;
+    const { Octokit } = await import("@octokit/rest");
+    const octokit = new Octokit({ auth: accessToken });
     
-    // Create a tree with the blob reference
-    const treeResponse = await octokit.rest.git.createTree({
-      owner: owner,
-      repo: repo,
-      tree: [
-        {
-          path: filePath,    // File name with timestamp
-          mode: "100644",     // File mode (non-executable)
-          type: "blob",       // Type of object (file)
-          sha: blobSha,       // SHA of the created blob
-        },
-      ],
-      base_tree: baseCommitSha, // The current commit SHA
-    });
-  
-    const treeSha = treeResponse.data.sha;
-    return treeSha;  // Return the SHA of the created tree
+    try {
+        const treeResponse = await octokit.rest.git.createTree({
+            owner: repoOwner,
+            repo: repoName,
+            tree: [
+              {
+                path: filePath, 
+                mode: "100644",   
+                type: "blob",     
+                content: logContent 
+              },
+            ],
+            base_tree: baseCommitSha,
+          });
+          return treeResponse.data.sha;
+    }
+    catch (error) {
+        throw error;
+    }
   };
   
