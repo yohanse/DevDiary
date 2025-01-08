@@ -7,6 +7,7 @@ export default async () => {
         vscode.window.showInformationMessage("Commit created successfully");
     }
     catch (error) {
+        console.log(error);
         vscode.window.showErrorMessage(`Error creating commit`);
     }
 };  

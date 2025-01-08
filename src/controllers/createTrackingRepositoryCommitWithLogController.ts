@@ -15,17 +15,21 @@ export default async () => {
     if (session && repoOwner && repoName && defaultBranch) {
 
         try {
+            console.log("Step 1. Get a reference to the tracking repository");
             // Step 1. Get a reference to the tracking repository
             const refSha: string = await getTrackingRepoReferenceController(session.accessToken, repoOwner, repoName, defaultBranch);
 
+            console.log("Step 2. Create a Tree with the log file content");
             // Step 2. Create a Tree with the log file content
             const logContent = "Log content here";
             const treeSha = await createTrackingRepositoryTreeController(session.accessToken, repoOwner, repoName, logContent, refSha);
 
+            console.log("Step 3. Create a commit with the tree");
             // Step 3. Create a commit with the tree
             const commitMessage = "Commit message here";
             const commitSha = await createTrackingRepoCommitController(session.accessToken, repoOwner, repoName, commitMessage, refSha, treeSha);
 
+            console.log("Step 4. Update the reference to the new commit");
             // Step 4. Update the reference to the new commit
             await updateBranchToCommitController(session.accessToken, repoOwner, repoName, defaultBranch, commitSha);
 

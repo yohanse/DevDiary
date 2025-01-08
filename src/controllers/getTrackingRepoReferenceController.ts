@@ -4,8 +4,8 @@ export default async (accessToken: string, repoOwner: string, repoName: string, 
     
     try {
         const refResponse = await octokit.rest.git.getRef({
-            owner: "owner_name",
-            repo: "repository_name",
+            owner: repoOwner,
+            repo: repoName,
             ref: `heads/${defaultBranch}`,
             });
         return refResponse.data.object.sha;
