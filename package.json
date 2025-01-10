@@ -35,12 +35,16 @@
     },
     "commands": [
       {
-        "command": "devdiary.StartActivityTracking",
+        "command": "devdiary.createTrackingRepo",
+        "title": "Create Tracking Repo"
+      },
+      {
+        "command": "devdiary.startActivityTracking",
         "title": "Start Activity Tracking"
       },
       {
-        "command": "devdiary.createTrackingRepo",
-        "title": "Create Tracking Repo"
+        "command": "devdiary.stopActivityTracking",
+        "title": "Stop Activity Tracking"
       },
       {
         "command": "devdiary.testCommit",
