@@ -6,7 +6,7 @@ import createTrackingRepositoryTreeController from "./createTrackingRepositoryTr
 import createTrackingRepoCommitController from "./createTrackingRepoCommitController";
 import updateBranchToCommitController from "./updateBranchToCommitController";
 
-export default async () => {
+export default async (logContent: string) => {
     const session: vscode.AuthenticationSession = await fetchAuthenticationSessionController();
     const { repoOwner, repoName, defaultBranch } = retrieveTrackingRepositorySettings();
 
@@ -21,7 +21,6 @@ export default async () => {
 
             console.log("Step 2. Create a Tree with the log file content");
             // Step 2. Create a Tree with the log file content
-            const logContent = "Log content here";
             const treeSha = await createTrackingRepositoryTreeController(session.accessToken, repoOwner, repoName, logContent, refSha);
 
             console.log("Step 3. Create a commit with the tree");
